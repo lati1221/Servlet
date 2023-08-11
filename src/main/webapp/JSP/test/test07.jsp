@@ -66,14 +66,20 @@
 						if(menu.equals(store.get("menu"))) {
 							// option 값에 따라 tr태그 포함 여부 결정
 							double point = (Double)store.get("point");
+							// option이 on아고, point가 4.0이상인 경우
+							if(option == null || option.equals("on")&& point > 4.0) {
+							
 						%>
+						
+						
 					<tr>
 						<td><%= store.get("name") %></td>
 						<td><%= store.get("menu") %></td>
 						<td><%= store.get("point") %></td>
 					</tr>
-					<% } 
-					} %>
+					<% 		} 
+						} 
+					}%>
 				</tbody>
 			</table>
 		
