@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>채널 목록</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -55,6 +55,8 @@
     
     // 보여질 카테고리를 파라미터로 전달받는다.
     
+    String category = request.getParameter("category");
+    
 %>
 
 	<div id="wrap">
@@ -71,13 +73,17 @@
 						</tr>
 					</thead>
 					<tbody>
-					<% for(Map<String, String> program:list) { %>
+					<% for(Map<String, String> program:list) { 
+						
+						if(category == null || category.equals(program.get("category"))) {
+						%>
 						<tr>
 							<td><%= program.get("ch") %></td>
 							<td><%= program.get("name") %></td>
 							<td><%= program.get("category") %></td>
 						</tr>
-					<% } %>
+					<% }
+					} %>
 					</tbody>				
 				</table>
 			</div>

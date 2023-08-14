@@ -66,7 +66,8 @@
 
 	<div class="container">
 		<% for(Map<String, Object> book:list) {
-			if(id == book.get("id")) {%>
+			int bookId = (Integer)book.get("id");
+			if(id == bookId) {%>
 		<div class="d-flex">
 			<div><img src="http://image.kyobobook.co.kr/images/book/xlarge/267/x9788936434267.jpg"></div>
 			<div class="ml-4">
