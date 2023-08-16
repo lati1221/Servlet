@@ -94,45 +94,11 @@
 %>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div id="wrap">
 		
-		<header class="d-flex">
-			<div class="logo d-flex align-items-center">
-			<h1 class="text-success">Melong</h1>
-			</div>
-			<div class="search">
-				<div class="input-group mb-3 pt-4">
- 					<input type="text" class="form-control">
-  					<div class="input-group-append">
-					<button type="button" class="btn btn-success">검색</button>
-					</div>
-				</div>
-			</div>
-		</header>
+		<jsp:include page="header2.jsp" />
+		<jsp:include page="menu2.jsp" />
 	
-		<nav class="main-menu">
-			<ul class="nav">
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">멜롱차트</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">최신음악</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">장르음악</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">멜롱DJ</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-dark font-weight-bold">뮤직어워드</a></li>
-			</ul>
-		</nav>
 		
 		<section class="contents">
 		
@@ -168,37 +134,10 @@
 				</table>
 			</div>
 		</section>
-		<footer class="mt-5">Copyright © marondal 2023.All Rights Reserved</footer>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		<jsp:include page="footer2.jsp" />
 	
 	
 	</div>
-
-
-
-
-
-
-
-
-
-
 
 
 
