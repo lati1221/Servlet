@@ -8,56 +8,72 @@ import java.sql.Statement;
 
 public class MysqlService {
 	
+	private static MysqlService mysqlService = null;
+	
+	private final String url = "jdbc:mysql://localhost:3306/byungje";
+	private final String id = "root";
+	private final String password = "root";
+	
 	private Connection connection;
 	private Statement statement;
 	
-	// 데이터 베이스 접속
-	public void connect() {
-		// 데이터베이스 접속
-		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+	public static MysqlService getInstance() {
 		
-		//
-		String url = "jdbc:mysql://localhost:3306/byungje";
-		String userId = "root";
-		String password = "root";
-		
-		connection = DriverManager.getConnection(url, userId, password);
-		statement = connection.createStatement();
-		
-		
-		
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			
-			}
-	
-	
-	
-	// select 쿼리 수행
-	public ResultSet select(String query) {
-		
-		ResultSet resultSet;
-		try {
-			resultSet = statement.executeQuery(query);
-			return resultSet;
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			
-			
-			return null;
-			}
-		
-		
+		if(mysqlService == null) {
+			mysqlService = new MysqlService();
 		}
-	
-	// insert, update, delete
-	public int update(String query) {
-	
-	// 데이터 베이스 접속 끊기
-	public void disconnect() {
-		try {
+		
+		return mysqlService;	
 	}
 	
+	private MysqlService() {
+		
+	}
 
+	// 접속기능
+	public void connect() {
+		try {
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			this.connection = DriverManager.getConnection(this.url, this.id, this.password);
+			this.statement = this.connection.createStatement();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// 접속 끊기 
+	public void disconnect() {
+		try {
+			this.statement.close();
+			this.connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// select 쿼리 수행기능
+	public ResultSet select(String query) {
+		try {
+			return this.statement.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	// insert, update, delete 쿼리 수행기능
+	public int update(String query) {
+		try {
+			return this.statement.executeUpdate(query);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return -1;
+		}
+	}
+}
