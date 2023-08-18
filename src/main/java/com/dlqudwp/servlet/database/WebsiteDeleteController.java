@@ -10,40 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dlqudwp.servlet.common.MysqlService;
 
-@WebServlet("/db/website/insert")
-public class WebsiteInsertController extends HttpServlet {
+@WebServlet("/db/website/delete")
+public class WebsiteDeleteController extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setContentType("text/html");
+//		response.setContentType("text/plain");
+//		
+//		PrintWriter out = response.getWriter();
+	
+		// 전달 받은 id에 대응하는 행을 삭제하는 기능
 		
-		PrintWriter out = response.getWriter();
+		int id = Integer.parseInt(request.getParameter("id"));
 		
-		String name = request.getParameter("name");
-		String url = request.getParameter("url");
-
 		MysqlService mysqlService = MysqlService.getInstance();
 		mysqlService.connect();
 		
-		String query = "INSERT INTO `webpage`\r\n"
-				+ "(`name`, `url`)\r\n"
-				+ "VALUES\r\n"
-				+ "('" + name + "', '" + url + "')";
+		String query = "DELETE FROM `webpage` WHERE `id` = " + id + ";";
 		
 		int count = mysqlService.update(query);
 		
-		out.println("실행 결과 : " + count);
-		
-		mysqlService.disconnect();
+//		out.println("실행결과 : " + count);
 		
 		response.sendRedirect("/database/website-list.jsp");
 		
 		
 		
-	}	
-
+	}
 }
-
-	
-	
-
